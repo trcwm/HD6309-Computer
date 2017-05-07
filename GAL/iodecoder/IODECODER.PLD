@@ -1,0 +1,62 @@
+Name            IODECODER;
+Partno          ATF16V8B;
+Revision        02;
+Date            29-4-2017;
+Designer        Niels Moseley;
+Company         Moseley Instruments;
+Assembly        HD6309 IO DECODER;
+Location        U2;
+Device          g16v8a;
+
+/********************************************************************************/
+/* This device partially decodes the I/O address for the HD6309 computer        */
+/*                                                                              */
+/* UART       : 0xE000 - 0xE008                                                 */
+/* EXPANSION  : 0xE010                                                          */
+/*                                                                              */
+/* Compile using WINCUPL (http://www.atmel.com/tools/wincupl.aspx               */
+/*                                                                              */
+/* Serial number: 60008009 (Atmel)                                              */    
+/********************************************************************************/
+
+/* input signals - we don't use special clock PIN 1 */
+pin 5      = RW ;           /* R/~W pin from HD6309             */
+pin 6      = E ;            /* E pin from HD6309                */
+pin 7      = RST_N ;        /* System reset                     */
+pin 9      = IO_CS_N ;      /* I/O selection active             */
+pin [2..4] = [a4..a6];      /* Address lines from HD6309        */
+pin 11     = !oe;           /* output enable (do we need this?) */
+
+/* outputs (available: 12..19) 
+   Note: negative outputs don't work
+   as reported here: 
+   http://ecee.colorado.edu/~mcclurel/WinCUPL_Intro_handouts2.pdf
+   so we define them as active high
+   but code them as active low!
+*/
+
+pin 19     = uart_cs_n ;
+pin 18     = exp_oe_n ;
+pin 17     = exp_dir ;
+pin 16     = exp_read_n ;
+pin 15     = exp_write_n ;
+pin 14     = uart_reset ;
+pin 13     = nu_1 ;
+pin 12     = nu_2 ;
+
+/** declarations **/
+
+field addr = [a6..a4] ; 
+
+/** equations **/
+uart_cs_n   = !(addr:'B'000XXXX) # IO_CS_N;
+exp_read_n  = !E # !RW # !(addr:'B'001XXXX) # IO_CS_N;
+exp_write_n = !E # RW # !(addr:'B'001XXXX) # IO_CS_N;
+exp_dir     = !RW # !(addr:'B'001XXXX) # IO_CS_N;       /* always high, except to read */
+exp_oe_n    = RW # !(addr:'B'001XXXX) # IO_CS_N;        /* driving on writes */
+/* exp_oe_n = 'B'1 ; */ /* disable expansion for now! */
+
+uart_reset  = !RST_N ;
+nu_1 = 'B'0 ; /* not used */
+nu_2 = 'B'0 ; /* not used */
+

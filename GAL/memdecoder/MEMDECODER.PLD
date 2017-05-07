@@ -1,0 +1,63 @@
+Name            MEMDECODER;
+Partno          ATF16V8B;
+Revision        03;
+Date            26-4-2017;
+Designer        Niels Moseley;
+Company         Moseley Instruments;
+Assembly        HD6309 MEMORY DECODER;
+Location        U4;
+Device          g16v8a;
+
+/********************************************************************************/
+/* This device partially decodes the memory address for the HD6309 computer     */
+/*                                                                              */
+/* We won't use the memory mapper for now.                                      */
+/*                                                                              */
+/* RAM: 0x0000 - 0xDFFF                                                         */
+/* IO : 0xE000 - 0xE7FF                                                         */
+/* MAP: 0xE800 - 0xEFFF                                                         */
+/* ROM: 0xF000 - 0xF000                                                         */
+/*                                                                              */
+/* WRITE RAM MAP: 0xEC--                                                        */
+/*                                                                              */
+/* Compile using WINCUPL (http://www.atmel.com/tools/wincupl.aspx               */
+/*                                                                              */
+/* Serial number: 60008009 (Atmel)                                              */    
+/********************************************************************************/
+
+/* input signals - we don't use special clock PIN 1 */
+pin 2      = E ;            /* E clock from HD6309              */
+pin 3      = RW ;           /* R/~W pin from HD6309             */
+pin [4..9] = [a15..a10];    /* Address lines from HD6309        */
+pin 11     = !oe;           /* output enable (do we need this?) */
+
+/* outputs (available: 12..19) 
+   Note: negative outputs don't work
+   as reported here: 
+   http://ecee.colorado.edu/~mcclurel/WinCUPL_Intro_handouts2.pdf
+   so we define them as active high
+   but code them as active low!
+*/
+
+pin 19     = ram_fix_n ;
+pin 18     = ram_map_n ;
+pin 17     = ram_cs_n ;
+pin 16     = write_n ;
+pin 15     = read_n ;
+pin 14     = rom_cs_n ;
+pin 13     = write_map ;
+pin 12     = io_cs_n ;
+
+/** declarations **/
+
+field addr = [a15..a10] ; 
+
+/** equations **/
+read_n    = !E # !RW ;
+write_n   = !E # RW ;
+ram_cs_n  = a15 & a14 & a13;
+io_cs_n   = !a15 # !a14 # !a13 # a12 # a11;
+rom_cs_n  = !a15 # !a14 # !a13 # !a12;
+write_map = a15 & a14 & a13 & !a12 & a11 & !E & !RW;
+ram_fix_n = !a15;
+ram_map_n = a15; 

@@ -1,0 +1,23 @@
+Name     IODECODER;
+PartNo   ATF16V8B;
+Date     29-4-2017;
+Revision 02;
+Designer Niels Moseley;
+Company  Moseley Instruments;
+Assembly HD6309 IO DECODER;
+Location U2;
+Device   g16v8a;
+
+
+ORDER: a6, a5, a4, RW, E, IO_CS_N, %2, uart_cs_n, exp_read_n, exp_write_n, exp_dir; 
+
+
+VECTORS:
+000010LHHH
+000110LHHH
+001010HHLH
+001110HLHL
+000011HHHH
+000111HHHH
+001011HHHH
+001111HHHH
