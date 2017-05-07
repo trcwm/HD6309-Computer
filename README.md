@@ -15,4 +15,4 @@ Features:
     * Memory check
     * SREC loader
 
-License: CERN Open Hardware License v1.2
+Licence: CERN Open Hardware Licence v1.2
