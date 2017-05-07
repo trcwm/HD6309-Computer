@@ -12,7 +12,7 @@ Features:
 	* Binary compatible to MC6809
 	* ..but faster instruction execution,
 	* ..extended registers,
-	* ..addition instructions,
+	* ..additional instructions,
 	* and lots more!
 * 1MB of RAM:
     * mapped in 32K pages at 0x0000 .. 0x7FFF
