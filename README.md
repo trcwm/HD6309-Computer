@@ -1,10 +1,9 @@
 # HD6309-Computer
 A computer based on the HD6309 CPU, done for the Retro Challenge 2017/04.
 
-<p align="center">
 ![HD6309 Computer Image](images/HD6309_computer_30_4_2017_2_small.JPG)
 ![HD6309 Computer Image](images/HD6309_srec_loading_test.gif)
-</p>
+
 
 Read the blog: [https://namoseley.wordpress.com/category/retrochallenge/](https://namoseley.wordpress.com/category/retrochallenge/)
 
