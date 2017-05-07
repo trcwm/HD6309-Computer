@@ -1,6 +1,8 @@
 # HD6309-Computer
 A computer based on the HD6309 CPU, done for the Retro Challenge 2017/04.
 
+![HD6309 Computer Image](images/HD6309_computer_30_4_2017_2_small.JPG)
+
 Features:
 * 1MB of RAM:
     * mapped in 32K pages at 0x0000 .. 0x7FFF
@@ -16,3 +18,5 @@ Features:
     * SREC loader
 
 Licence: CERN Open Hardware Licence v1.2
+
+Development time provided by: http://www.moseleyinstruments.com
