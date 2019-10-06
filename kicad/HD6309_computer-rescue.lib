@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# HD6309_computer-rescue_74HC541
+# 74HC541
 #
-DEF HD6309_computer-rescue_74HC541 U 0 40 Y Y 1 F N
+DEF 74HC541 U 0 40 Y Y 1 F N
 F0 "U" 500 -50 50 H V C CNN
-F1 "HD6309_computer-rescue_74HC541" 300 1150 50 H V C CNN
+F1 "74HC541" 300 1150 50 H V C CNN
 F2 "" 400 550 50 H V C CNN
 F3 "" 400 550 50 H V C CNN
 $FPLIST
@@ -36,11 +36,11 @@ X D7 9 -100 200 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_74HC574
+# 74HC574
 #
-DEF HD6309_computer-rescue_74HC574 U 0 40 Y Y 1 F N
+DEF 74HC574 U 0 40 Y Y 1 F N
 F0 "U" 500 -50 50 H V C CNN
-F1 "HD6309_computer-rescue_74HC574" 300 1150 50 H V C CNN
+F1 "74HC574" 300 1150 50 H V C CNN
 F2 "" 400 550 50 H V C CNN
 F3 "" 400 550 50 H V C CNN
 $FPLIST
@@ -71,11 +71,11 @@ X D7 9 -100 200 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_74HCT245
+# 74HCT245
 #
-DEF HD6309_computer-rescue_74HCT245 U 0 40 Y Y 1 F N
+DEF 74HCT245 U 0 40 Y Y 1 F N
 F0 "U" 500 -50 60 H V C CNN
-F1 "HD6309_computer-rescue_74HCT245" 250 1150 60 H V C CNN
+F1 "74HCT245" 250 1150 60 H V C CNN
 F2 "" 0 -100 60 H I C CNN
 F3 "" 0 -100 60 H I C CNN
 $FPLIST
@@ -106,11 +106,11 @@ X A7 9 -100 200 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_AS6C8008
+# AS6C8008
 #
-DEF HD6309_computer-rescue_AS6C8008 U 0 40 Y Y 1 F N
+DEF AS6C8008 U 0 40 Y Y 1 F N
 F0 "U" 600 -50 60 H V C CNN
-F1 "HD6309_computer-rescue_AS6C8008" 350 2350 60 H V C CNN
+F1 "AS6C8008" 350 2350 60 H V C CNN
 F2 "" 0 250 60 H I C CNN
 F3 "" 0 250 60 H I C CNN
 DRAW
@@ -162,11 +162,11 @@ X DQ0 9 -100 1400 100 R 50 50 0 0 W
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_AT28C64B
+# AT28C64B
 #
-DEF HD6309_computer-rescue_AT28C64B U 0 40 Y Y 1 F N
+DEF AT28C64B U 0 40 Y Y 1 F N
 F0 "U" 500 -50 60 H V C CNN
-F1 "HD6309_computer-rescue_AT28C64B" 300 1550 60 H V C CNN
+F1 "AT28C64B" 300 1550 60 H V C CNN
 F2 "" 0 0 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 $FPLIST
@@ -205,11 +205,11 @@ X A1 9 -100 600 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_ATF16V8B
+# ATF16V8B
 #
-DEF HD6309_computer-rescue_ATF16V8B U 0 40 Y Y 1 F N
+DEF ATF16V8B U 0 40 Y Y 1 F N
 F0 "U" 550 -50 60 H V C CNN
-F1 "HD6309_computer-rescue_ATF16V8B" 300 1150 60 H V C CNN
+F1 "ATF16V8B" 300 1150 60 H V C CNN
 F2 "" 0 1100 60 H V C CNN
 F3 "" 0 1100 60 H V C CNN
 $FPLIST
@@ -240,11 +240,11 @@ X I8 9 -100 200 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_CONN_01X02
+# CONN_01X02
 #
-DEF HD6309_computer-rescue_CONN_01X02 P 0 40 Y N 1 F N
+DEF CONN_01X02 P 0 40 Y N 1 F N
 F0 "P" 0 150 50 H V C CNN
-F1 "HD6309_computer-rescue_CONN_01X02" 100 0 50 V V C CNN
+F1 "CONN_01X02" 100 0 50 V V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -262,11 +262,11 @@ X P2 2 -200 -50 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_CONN_01X05
+# CONN_01X05
 #
-DEF HD6309_computer-rescue_CONN_01X05 P 0 40 Y N 1 F N
+DEF CONN_01X05 P 0 40 Y N 1 F N
 F0 "P" 0 300 50 H V C CNN
-F1 "HD6309_computer-rescue_CONN_01X05" 100 0 50 V V C CNN
+F1 "CONN_01X05" 100 0 50 V V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -290,11 +290,11 @@ X P5 5 -200 -200 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_CONN_01X08
+# CONN_01X08
 #
-DEF HD6309_computer-rescue_CONN_01X08 P 0 40 Y N 1 F N
+DEF CONN_01X08 P 0 40 Y N 1 F N
 F0 "P" 0 450 50 H V C CNN
-F1 "HD6309_computer-rescue_CONN_01X08" 100 0 50 V V C CNN
+F1 "CONN_01X08" 100 0 50 V V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -324,11 +324,11 @@ X P8 8 -200 -350 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_CONN_01X10
+# CONN_01X10
 #
-DEF HD6309_computer-rescue_CONN_01X10 P 0 40 Y N 1 F N
+DEF CONN_01X10 P 0 40 Y N 1 F N
 F0 "P" 0 550 50 H V C CNN
-F1 "HD6309_computer-rescue_CONN_01X10" 100 0 50 V V C CNN
+F1 "CONN_01X10" 100 0 50 V V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -362,11 +362,11 @@ X P9 9 -200 -350 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_CP_Small-HD6309_computer-rescue
+# CP_Small-HD6309_computer-rescue
 #
-DEF HD6309_computer-rescue_CP_Small-HD6309_computer-rescue C 0 10 N N 1 F N
+DEF CP_Small-HD6309_computer-rescue C 0 10 N N 1 F N
 F0 "C" 10 70 50 H V L CNN
-F1 "HD6309_computer-rescue_CP_Small-HD6309_computer-rescue" 10 -80 50 H V L CNN
+F1 "CP_Small-HD6309_computer-rescue" 10 -80 50 H V L CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -388,11 +388,11 @@ X ~ 2 0 -100 73 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_C_Small-HD6309_computer-rescue
+# C_Small-HD6309_computer-rescue
 #
-DEF HD6309_computer-rescue_C_Small-HD6309_computer-rescue C 0 10 N N 1 F N
+DEF C_Small-HD6309_computer-rescue C 0 10 N N 1 F N
 F0 "C" 10 70 50 H V L CNN
-F1 "HD6309_computer-rescue_C_Small-HD6309_computer-rescue" 10 -80 50 H V L CNN
+F1 "C_Small-HD6309_computer-rescue" 10 -80 50 H V L CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -410,11 +410,11 @@ X ~ 2 0 -100 80 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_HD63C09
+# HD63C09
 #
-DEF HD6309_computer-rescue_HD63C09 U 0 40 Y Y 1 F N
+DEF HD63C09 U 0 40 Y Y 1 F N
 F0 "U" 750 -50 60 H V C CNN
-F1 "HD6309_computer-rescue_HD63C09" 450 2150 60 H V C CNN
+F1 "HD63C09" 450 2150 60 H V C CNN
 F2 "" 0 0 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 DRAW
@@ -462,11 +462,11 @@ X A1 9 -100 1200 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_LED
+# LED
 #
-DEF HD6309_computer-rescue_LED D 0 40 Y N 1 F N
+DEF LED D 0 40 Y N 1 F N
 F0 "D" 0 100 50 H V C CNN
-F1 "HD6309_computer-rescue_LED" 0 -100 50 H V C CNN
+F1 "LED" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -483,11 +483,32 @@ X A 2 200 0 150 L 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_Logo
+# LED-RESCUE-HD6309_computer
 #
-DEF HD6309_computer-rescue_Logo LOGO 0 40 Y Y 1 F N
+DEF LED-RESCUE-HD6309_computer D 0 40 Y N 1 F N
+F0 "D" 0 100 50 H V C CNN
+F1 "LED-RESCUE-HD6309_computer" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
+$FPLIST
+ LED-*
+ LED_*
+$ENDFPLIST
+DRAW
+P 2 0 1 0 -50 50 -50 -50 N
+P 3 0 1 0 -80 -25 -125 -65 -120 -40 N
+P 3 0 1 0 -65 -40 -110 -80 -105 -55 N
+P 3 0 1 0 50 50 -50 0 50 -50 F
+X K 1 -200 0 150 R 40 40 1 1 P
+X A 2 200 0 150 L 40 40 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Logo
+#
+DEF Logo LOGO 0 40 Y Y 1 F N
 F0 "LOGO" 0 -50 60 H V C CNN
-F1 "HD6309_computer-rescue_Logo" 0 100 60 H I C CNN
+F1 "Logo" 0 100 60 H I C CNN
 F2 "" 0 0 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 DRAW
@@ -496,11 +517,11 @@ S -250 200 250 0 0 1 0 N
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_MountingHole3mm
+# MountingHole3mm
 #
-DEF HD6309_computer-rescue_MountingHole3mm M 0 40 Y Y 1 F N
+DEF MountingHole3mm M 0 40 Y Y 1 F N
 F0 "M" 0 175 60 H V C CNN
-F1 "HD6309_computer-rescue_MountingHole3mm" 0 -175 60 H V C CNN
+F1 "MountingHole3mm" 0 -175 60 H V C CNN
 F2 "" 0 0 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 DRAW
@@ -511,11 +532,11 @@ P 2 0 1 0 0 75 0 -75 N
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_Oscillator7x5
+# Oscillator7x5
 #
-DEF HD6309_computer-rescue_Oscillator7x5 U 0 40 Y Y 1 F N
+DEF Oscillator7x5 U 0 40 Y Y 1 F N
 F0 "U" 500 -75 60 H V C CNN
-F1 "HD6309_computer-rescue_Oscillator7x5" 275 475 60 H V C CNN
+F1 "Oscillator7x5" 275 475 60 H V C CNN
 F2 "" 0 -50 60 H I C CNN
 F3 "" 0 -50 60 H I C CNN
 $FPLIST
@@ -530,11 +551,11 @@ X VCC 4 650 300 100 L 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_Q_NPN_EBC-HD6309_computer-rescue
+# Q_NPN_EBC-HD6309_computer-rescue
 #
-DEF HD6309_computer-rescue_Q_NPN_EBC-HD6309_computer-rescue Q 0 0 Y N 1 F N
+DEF Q_NPN_EBC-HD6309_computer-rescue Q 0 0 Y N 1 F N
 F0 "Q" 300 50 50 H V R CNN
-F1 "HD6309_computer-rescue_Q_NPN_EBC-HD6309_computer-rescue" 600 -50 50 H V R CNN
+F1 "Q_NPN_EBC-HD6309_computer-rescue" 600 -50 50 H V R CNN
 F2 "" 200 100 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 DRAW
@@ -549,11 +570,11 @@ X C 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_R_Small-HD6309_computer-rescue
+# R_Small-HD6309_computer-rescue
 #
-DEF HD6309_computer-rescue_R_Small-HD6309_computer-rescue R 0 10 N N 1 F N
+DEF R_Small-HD6309_computer-rescue R 0 10 N N 1 F N
 F0 "R" 30 20 50 H V L CNN
-F1 "HD6309_computer-rescue_R_Small-HD6309_computer-rescue" 30 -40 50 H V L CNN
+F1 "R_Small-HD6309_computer-rescue" 30 -40 50 H V L CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -567,11 +588,11 @@ X ~ 2 0 -100 30 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_SC16C550B
+# SC16C550B
 #
-DEF HD6309_computer-rescue_SC16C550B U 0 40 Y Y 1 F N
+DEF SC16C550B U 0 40 Y Y 1 F N
 F0 "U" 1700 -50 60 H V C CNN
-F1 "HD6309_computer-rescue_SC16C550B" 900 900 60 H V C CNN
+F1 "SC16C550B" 900 900 60 H V C CNN
 F2 "" 0 0 60 H I C CNN
 F3 "" 0 0 60 H I C CNN
 $FPLIST
@@ -630,11 +651,11 @@ X CS0 9 -100 600 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_SW_PUSH_SMALL_H
+# SW_PUSH_SMALL_H
 #
-DEF HD6309_computer-rescue_SW_PUSH_SMALL_H SW 0 40 N N 1 F N
+DEF SW_PUSH_SMALL_H SW 0 40 N N 1 F N
 F0 "SW" 80 110 50 H V C CNN
-F1 "HD6309_computer-rescue_SW_PUSH_SMALL_H" 360 -60 50 H V C CNN
+F1 "SW_PUSH_SMALL_H" 360 -60 50 H V C CNN
 F2 "" 0 200 50 H V C CNN
 F3 "" 0 200 50 H V C CNN
 DRAW
@@ -648,11 +669,11 @@ X 2 2 150 0 50 L 50 50 0 1 P
 ENDDRAW
 ENDDEF
 #
-# HD6309_computer-rescue_USB_B
+# USB_B
 #
-DEF HD6309_computer-rescue_USB_B P 0 40 Y Y 1 F N
+DEF USB_B P 0 40 Y Y 1 F N
 F0 "P" 200 -200 50 H V C CNN
-F1 "HD6309_computer-rescue_USB_B" -50 200 50 H V C CNN
+F1 "USB_B" -50 200 50 H V C CNN
 F2 "" -50 -100 50 V V C CNN
 F3 "" -50 -100 50 V V C CNN
 $FPLIST
@@ -672,31 +693,27 @@ X shield 5 300 100 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# power_+5V
+# USB_B-RESCUE-HD6309_computer
 #
-DEF power_+5V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+5V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+DEF USB_B-RESCUE-HD6309_computer P 0 40 Y Y 1 F N
+F0 "P" 200 -200 50 H V C CNN
+F1 "USB_B-RESCUE-HD6309_computer" -50 200 50 H V C CNN
+F2 "" -50 -100 50 V V C CNN
+F3 "" -50 -100 50 V V C CNN
+$FPLIST
+ USB*
+$ENDFPLIST
 DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +5V 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# power_GND
-#
-DEF power_GND #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -250 50 H I C CNN
-F1 "power_GND" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
-X GND 1 0 0 0 D 50 50 1 1 W N
+S -250 -150 150 150 0 1 0 N
+S -205 -150 -195 -120 0 1 0 N
+S -105 -150 -95 -120 0 1 0 N
+S -5 -150 5 -120 0 1 0 N
+S 95 -150 105 -120 0 1 0 N
+X VCC 1 -200 -300 150 U 50 50 1 1 w
+X D- 2 -100 -300 150 U 50 50 1 1 P
+X D+ 3 0 -300 150 U 50 50 1 1 P
+X GND 4 100 -300 150 U 50 50 1 1 W
+X shield 5 300 100 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
