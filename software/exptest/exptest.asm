@@ -147,10 +147,9 @@ AGAIN:
 
     ; wait a bit
     CLRA
-WAIT3:
-    PSHS A
 WAIT2:    
     PSHS A
+    CLRA    
 WAIT:
     INCA
     BNE WAIT
@@ -158,10 +157,6 @@ WAIT:
     PULS A
     INCA
     BNE WAIT2
-
-    PULS A
-    INCA
-    BNE WAIT3
 
     JMP AGAIN
 

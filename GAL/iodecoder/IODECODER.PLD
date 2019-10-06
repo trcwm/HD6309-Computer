@@ -53,8 +53,8 @@ uart_cs_n   = !(addr:'B'000XXXX) # IO_CS_N;
 exp_read_n  = !E # !RW # !(addr:'B'001XXXX) # IO_CS_N;
 exp_write_n = !E # RW # !(addr:'B'001XXXX) # IO_CS_N;
 exp_dir     = !RW # !(addr:'B'001XXXX) # IO_CS_N;       /* always high, except to read */
-exp_oe_n    = RW # !(addr:'B'001XXXX) # IO_CS_N;        /* driving on writes */
-/* exp_oe_n = 'B'1 ; */ /* disable expansion for now! */
+exp_oe_n    = !(addr:'B'001XXXX) # IO_CS_N;             /* drive low on all I/O */
+/* exp_oe_n    = RW # !(addr:'B'001XXXX) # IO_CS_N; */       /* driving on writes */
 
 uart_reset  = !RST_N ;
 nu_1 = 'B'0 ; /* not used */

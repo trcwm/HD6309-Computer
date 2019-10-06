@@ -2932,6 +2932,10 @@ Wire Wire Line
 NoConn ~ 11500 9000
 NoConn ~ 7800 9600
 NoConn ~ 7800 9700
+Text Notes 6750 6800 0    60   ~ 0
+FIXME: change to pull-up/down resistors.
+Text Notes 700  9200 0    60   ~ 0
+Add MCP2200 USB UART.\nAdd PCA9564 parallel to I2C interface?
 Wire Bus Line
 	1050 6650 1500 6650
 Wire Bus Line
@@ -2962,8 +2966,6 @@ Wire Bus Line
 	1050 600  1050 7200
 Wire Bus Line
 	11250 600  11250 4800
-Text Notes 6750 6800 0    60   ~ 0
-FIXME: change to pull-up/down resistors.
-Text Notes 700  9200 0    60   ~ 0
-Add MCP2200 USB UART.
+Text Notes 11200 9400 0    60   ~ 0
+Replace with SC16C752B dual channel UART.
 $EndSCHEMATC
