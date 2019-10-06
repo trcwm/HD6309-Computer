@@ -1,6 +1,6 @@
 Name     IODECODER;
 PartNo   ATF16V8B;
-Date     29-4-2017;
+Date     06-10-2019;
 Revision 02;
 Designer Niels Moseley;
 Company  Moseley Instruments;
@@ -9,15 +9,15 @@ Location U2;
 Device   g16v8a;
 
 
-ORDER: a6, a5, a4, RW, E, IO_CS_N, %2, uart_cs_n, exp_read_n, exp_write_n, exp_dir; 
+ORDER: a6, a5, a4, RW, E, IO_CS_N, %2, uart_cs_n, exp_read_n, exp_write_n, exp_dir, exp_oe_n; 
 
 
 VECTORS:
-000010LHHH
-000110LHHH
-001010HHLH
-001110HLHL
-000011HHHH
-000111HHHH
-001011HHHH
-001111HHHH
+000010LHHHH
+000110LHHHH
+001010HHLHL
+001110HLHLL
+000011HHHHH
+000111HHHHH
+001011HHHHH
+001111HHHHH
