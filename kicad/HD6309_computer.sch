@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:HD6309_computer-cache
-EELAYER 30 0
+EELAYER 29 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
@@ -53,7 +53,7 @@ F 3 "" H 1150 1900 50  0000 C CNN
 $EndComp
 NoConn ~ 2950 2350
 $Comp
-L HD6309_computer-rescue:R_Small R5
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R5
 U 1 1 58E38FDA
 P 3000 1100
 F 0 "R5" H 3030 1120 50  0000 L CNN
@@ -64,7 +64,7 @@ F 3 "" H 3000 1100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:R_Small R1
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R1
 U 1 1 58E3BB2F
 P 1350 1100
 F 0 "R1" H 1380 1120 50  0000 L CNN
@@ -178,7 +178,7 @@ Text GLabel 5150 3600 2    60   Output ~ 0
 Text GLabel 5150 3500 2    60   Output ~ 0
 ~RAM_FIX
 $Comp
-L HD6309_computer-rescue:R_Small R6
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R6
 U 1 1 58E17CB6
 P 3250 1100
 F 0 "R6" H 3280 1120 50  0000 L CNN
@@ -189,7 +189,7 @@ F 3 "" H 3250 1100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:R_Small R7
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R7
 U 1 1 58E17CE9
 P 3500 1100
 F 0 "R7" H 3530 1120 50  0000 L CNN
@@ -512,7 +512,7 @@ WRITE_MAP
 Text GLabel 7550 4300 2    60   Input ~ 0
 WRITE_MAP
 $Comp
-L HD6309_computer-rescue:R_Small R8
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R8
 U 1 1 58E272B3
 P 3750 1100
 F 0 "R8" H 3780 1120 50  0000 L CNN
@@ -616,7 +616,7 @@ Text Notes 9600 4950 0    60   ~ 0
 NoConn ~ 1850 2350
 NoConn ~ 1850 2250
 $Comp
-L HD6309_computer-rescue:R_Small R2
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R2
 U 1 1 58E2F507
 P 1550 1100
 F 0 "R2" H 1580 1120 50  0000 L CNN
@@ -823,7 +823,7 @@ F 3 "" H 12900 7300 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L HD6309_computer-rescue:R_Small R9
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R9
 U 1 1 58E8B4C5
 P 12600 6900
 F 0 "R9" H 12630 6920 50  0000 L CNN
@@ -834,7 +834,7 @@ F 3 "" H 12600 6900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:R_Small R10
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R10
 U 1 1 58E8B552
 P 12900 6900
 F 0 "R10" H 12930 6920 50  0000 L CNN
@@ -969,7 +969,7 @@ F 3 "" H 8550 9300 50  0000 C CNN
 $EndComp
 NoConn ~ 8600 9000
 $Comp
-L HD6309_computer-rescue:CP_Small C1
+L HD6309_computer-rescue:CP_Small-HD6309_computer-rescue C1
 U 1 1 58E9C69F
 P 1350 10650
 F 0 "C1" H 1360 10720 50  0000 L CNN
@@ -1004,7 +1004,7 @@ $EndComp
 Text GLabel 1300 2150 0    60   Input ~ 0
 ~INT
 $Comp
-L HD6309_computer-rescue:Q_NPN_EBC Q1
+L HD6309_computer-rescue:Q_NPN_EBC-HD6309_computer-rescue Q1
 U 1 1 58EA095E
 P 13500 7800
 F 0 "Q1" H 13800 7850 50  0000 R CNN
@@ -1028,7 +1028,7 @@ F 3 "" H 13600 8050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:R_Small R11
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R11
 U 1 1 58EA1A1D
 P 13000 8100
 F 0 "R11" H 13030 8120 50  0000 L CNN
@@ -1050,7 +1050,7 @@ F 3 "" H 6050 2350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:CP_Small C2
+L HD6309_computer-rescue:CP_Small-HD6309_computer-rescue C2
 U 1 1 58EA56A3
 P 5700 2350
 F 0 "C2" H 5710 2420 50  0000 L CNN
@@ -1163,7 +1163,7 @@ $EndComp
 Text GLabel 3700 5800 2    60   Output ~ 0
 ~EXPANSION_OE
 $Comp
-L HD6309_computer-rescue:R_Small R3
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R3
 U 1 1 58E8524E
 P 1750 1100
 F 0 "R3" H 1780 1120 50  0000 L CNN
@@ -2040,7 +2040,7 @@ F 3 "" H 2200 10600 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L HD6309_computer-rescue:R_Small R4
+L HD6309_computer-rescue:R_Small-HD6309_computer-rescue R4
 U 1 1 58E9A823
 P 2200 10200
 F 0 "R4" H 2230 10220 50  0000 L CNN
@@ -2093,7 +2093,7 @@ Wire Wire Line
 	1550 10300 1550 10450
 Connection ~ 1550 10450
 $Comp
-L HD6309_computer-rescue:C_Small C3
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C3
 U 1 1 58E9DBDA
 P 2600 10600
 F 0 "C3" H 2610 10670 50  0000 L CNN
@@ -2104,7 +2104,7 @@ F 3 "" H 2600 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C4
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C4
 U 1 1 58E9DD41
 P 2850 10600
 F 0 "C4" H 2860 10670 50  0000 L CNN
@@ -2115,7 +2115,7 @@ F 3 "" H 2850 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C5
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C5
 U 1 1 58E9DDC6
 P 3100 10600
 F 0 "C5" H 3110 10670 50  0000 L CNN
@@ -2126,7 +2126,7 @@ F 3 "" H 3100 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C6
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C6
 U 1 1 58E9DE52
 P 3350 10600
 F 0 "C6" H 3360 10670 50  0000 L CNN
@@ -2137,7 +2137,7 @@ F 3 "" H 3350 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C7
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C7
 U 1 1 58E9DF79
 P 3600 10600
 F 0 "C7" H 3610 10670 50  0000 L CNN
@@ -2148,7 +2148,7 @@ F 3 "" H 3600 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C8
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C8
 U 1 1 58E9DF7F
 P 3850 10600
 F 0 "C8" H 3860 10670 50  0000 L CNN
@@ -2159,7 +2159,7 @@ F 3 "" H 3850 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C9
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C9
 U 1 1 58E9DF85
 P 4100 10600
 F 0 "C9" H 4110 10670 50  0000 L CNN
@@ -2170,7 +2170,7 @@ F 3 "" H 4100 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C10
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C10
 U 1 1 58E9DF8B
 P 4350 10600
 F 0 "C10" H 4360 10670 50  0000 L CNN
@@ -2181,7 +2181,7 @@ F 3 "" H 4350 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C11
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C11
 U 1 1 58E9E019
 P 4600 10600
 F 0 "C11" H 4610 10670 50  0000 L CNN
@@ -2192,7 +2192,7 @@ F 3 "" H 4600 10600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L HD6309_computer-rescue:C_Small C12
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C12
 U 1 1 58E9E01F
 P 4850 10600
 F 0 "C12" H 4860 10670 50  0000 L CNN
@@ -2676,7 +2676,7 @@ Text GLabel 2500 6200 0    60   Input ~ 0
 Wire Wire Line
 	2500 6200 2700 6200
 $Comp
-L HD6309_computer-rescue:C_Small C?
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C?
 U 1 1 59101EB6
 P 5200 1800
 F 0 "C?" H 5210 1870 50  0000 L CNN
@@ -2707,7 +2707,7 @@ Text Notes 5200 1700 0    60   ~ 0
 Text Notes 9600 9650 0    60   ~ 0
 * ANTI-RINGING
 $Comp
-L HD6309_computer-rescue:C_Small C?
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C?
 U 1 1 59103C0C
 P 9550 9450
 F 0 "C?" H 9560 9520 50  0000 L CNN
@@ -2746,7 +2746,7 @@ Connection ~ 13650 3150
 Text GLabel 1100 8000 0    60   Input ~ 0
 ~READ
 $Comp
-L HD6309_computer-rescue:C_Small C?
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C?
 U 1 1 5910A517
 P 1200 8200
 F 0 "C?" H 1210 8270 50  0000 L CNN
@@ -2776,7 +2776,7 @@ Wire Wire Line
 Text GLabel 1750 8000 0    60   Input ~ 0
 ~WRITE
 $Comp
-L HD6309_computer-rescue:C_Small C?
+L HD6309_computer-rescue:C_Small-HD6309_computer-rescue C?
 U 1 1 5910B611
 P 1850 8200
 F 0 "C?" H 1860 8270 50  0000 L CNN
@@ -2936,6 +2936,8 @@ Text Notes 6750 6800 0    60   ~ 0
 FIXME: change to pull-up/down resistors.
 Text Notes 700  9200 0    60   ~ 0
 Add MCP2200 USB UART.\nAdd PCA9564 parallel to I2C interface?
+Text Notes 11200 9400 0    60   ~ 0
+Replace with SC16C752B dual channel UART.
 Wire Bus Line
 	1050 6650 1500 6650
 Wire Bus Line
@@ -2966,6 +2968,4 @@ Wire Bus Line
 	1050 600  1050 7200
 Wire Bus Line
 	11250 600  11250 4800
-Text Notes 11200 9400 0    60   ~ 0
-Replace with SC16C752B dual channel UART.
 $EndSCHEMATC
