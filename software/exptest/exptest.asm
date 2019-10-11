@@ -122,10 +122,31 @@ PRINTAHEX_2:
 START:
     LDX #BANNER
     JSR PRINTSTRING
-
     CLRB
-AGAIN:
-    ; read from I/O port
+
+CMDAGAIN:
+    ; ask for user input
+    LDX #ASK
+    JSR PRINTSTRING
+
+    JSR INCHAR
+    
+    CMPA #'R'
+    BEQ PORT_READ
+    
+    CMPA #'W'
+    BEQ PORT_WRITE
+
+    LDX #HUH        ; error -> invalid command
+    JSR PRINTSTRING
+    JSR OUTCHAR     ; print command char
+    LDA #39         ; apostrophe
+    JSR OUTCHAR
+    LDX #EOLSTR
+    JSR PRINTSTRING
+    JMP CMDAGAIN
+
+PORT_READ:
     LDX #IOPORT
     LDA 0,X
     LDX #PORTTXT
@@ -133,8 +154,9 @@ AGAIN:
     JSR PRINTAHEX
     LDX #EOLSTR
     JSR PRINTSTRING
+    JMP CMDAGAIN
 
-    ; write to I/O port
+PORT_WRITE:
     LDX #IOPORT
     STB 0,X
     LDX #PORTTXT2
@@ -144,29 +166,21 @@ AGAIN:
     LDX #EOLSTR
     JSR PRINTSTRING
     INCB
-
-    ; wait a bit
-    CLRA
-WAIT2:    
-    PSHS A
-    CLRA    
-WAIT:
-    INCA
-    BNE WAIT
-    
-    PULS A
-    INCA
-    BNE WAIT2
-
-    JMP AGAIN
+    JMP CMDAGAIN
 
 BANNER .ascii "HD6309 I/O port test"
        .db 10,13,0
 
-PORTTXT .ascii "READ  PORT 0: 0x"
+ASK    .ascii "Press R for READ - W for WRITE"
+       .db 10,13,0
+
+HUH    .ascii "Invalid command '"
+       .db 0
+
+PORTTXT .ascii  "Read  : "
         .db 0
 
-PORTTXT2 .ascii "WRITE PORT 0: 0x"
-        .db 0
+PORTTXT2 .ascii "Write : "
+         .db 0
 
 EOLSTR .db 10,13,0
