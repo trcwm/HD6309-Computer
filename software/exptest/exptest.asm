@@ -120,6 +120,7 @@ PRINTAHEX_2:
 ; ==================================================
 
 START:
+    LDS #STACK
     LDX #BANNER
     JSR PRINTSTRING
     CLRB
