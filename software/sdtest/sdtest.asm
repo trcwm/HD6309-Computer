@@ -131,11 +131,13 @@ PRINTAHEX_2:
 ;   SPI INTERFACE - delay for a bit
 ; ==================================================
 
-SPI_OUT .db 0   ; SPI output shadow register
+; SHOULD BE IN RAM!
+SPI_OUT   .db 0   ; SPI output shadow register
+SPI_SPEED .db 255
 
 SPI_DELAY:
     PSHS A
-    CLRA
+    LDA SPI_SPEED
 SPI_DELAY1:  
     DECA
     BNE SPI_DELAY1
@@ -283,65 +285,114 @@ SDTXCMD:
     RTS
 
 ; ==================================================
+; READ SDCARD 1 BYTE RESPONSE INTO MEM -> X PTR
+;   assumed that NSS is 0
+;   saves X
+; ==================================================
+SDRX1:
+    JSR SPI_RXA
+    TSTA
+    BMI SDRX1       ; MSB should be 0
+    STA ,X
+    RTS
+
+; ==================================================
+; READ SDCARD 4 BYTE RESPONSE INTO MEM -> X PTR
+;   assumed that NSS is 0
+;   saves X
+; ==================================================
+SDRX5:
+    JSR SPI_RXA
+    TSTA
+    BMI SDRX5       ; MSB should be 0
+    STA 0,X
+    JSR SPI_RXA
+    STA 1,X
+    JSR SPI_RXA
+    STA 2,X
+    JSR SPI_RXA
+    STA 3,X
+    JSR SPI_RXA
+    STA 4,X    
+    RTS
+
+; ==================================================
 ;   SD CARD INIT 
 ; ==================================================
 
+; can be in ROM:
 CMD0:   .db $40,0,0,0,0,$95
 CMD8:   .db $48,0,0,1,$AA,$87
 CMD41:  .db $69,0x40,0,0,0,1
 CMD55:  .db $77,0,0,0,0,1
 CMD58:  .db $7A,0,0,0,0,1
 
+; SDRESP must be in RAM!
+SDRESP:  .db 0,0,0,0,0
+
+SDFAIL:
+    LDX #SDERR
+    JSR PRINTSTRING
+    LDX #ASK    
+    JSR PRINTSTRING
+    JSR INCHAR      ; wait for key press
+    ; intentional fall-through
+    
+    ; === INIT ENTRY POINT ===
 SDINIT:
-    JSR NSS1  ; deselect card
-    JSR MOSI1 ; default state for MOSI
-    JSR SCK0  ; default state for SCK
-    LDB #10   ; 10 bytes -> spec says at least 74 clock cycles
+    LDA #255
+    STA SPI_SPEED   ; set slowest speed
+    JSR NSS1        ; deselect card
+    JSR MOSI1       ; default state for MOSI
+    JSR SCK0        ; default state for SCK
+    LDB #10         ; 10 bytes -> spec says at least 74 clock cycles
     
 SDINIT1:
-    LDA #$FF      ; make sure MOSI stays at '1'
-    JSR SPI_TXA   ; send A (and destroys it)
+    LDA #$FF        ; make sure MOSI stays at '1'
+    JSR SPI_TXA     ; send idle sequence
     DECB
     BNE SDINIT1
 
     ; === send CMD0 init sequence ===
+    LDB #10         ; try CMD0 max 10x 
+TRYCMD0:
+    DECB
+    BEQ SDFAIL
     LDX #CMD0
     JSR SDTXCMD
 
-    ; read response
-    LDX #CMD0TXT
-    JSR PRINTSTRING
-    JSR SPI_RXA
-    JSR PRINTAHEX
+    ; read CMD0 response
+    ; should be $01 for OK
+    LDX #SDRESP
+    JSR SDRX1
     JSR NSS1
-
-    LDX #EOLSTR
-    JSR PRINTSTRING
+    LDA 0,X     
+    CMPA #$01       ; check status code
+    BNE TRYCMD0
     
     ; === send CMD8  ===
+    LDB #10         ; try CMD8 max 10x 
+TRYCMD8:
+    DECB
+    BEQ SDFAIL    
     LDX #CMD8
     JSR SDTXCMD
 
     ; read response
-    LDX #CMD8TXT
-    JSR PRINTSTRING
-
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX    
+    LDX #SDRESP
+    JSR SDRX5
     JSR NSS1
-
-    LDX #EOLSTR
-    JSR PRINTSTRING
-
-    ; == idle period
+    LDA 0,X
+    CMPA #$01       ; check status code
+    BNE TRYCMD8
+    LDA 3,X
+    CMPA #$01
+    BNE TRYCMD8     ; check voltage range
+    LDA 4,X
+    CMPA #$AA
+    BNE TRYCMD8
+    
+    ; == idle period ==
     LDA #$FF
     JSR SPI_TXA
     LDA #$FF
@@ -351,74 +402,171 @@ SDINIT1:
     LDA #$FF
     JSR SPI_TXA
 
+    LDB #10
 INIT_AGAIN:
+    DECB
+    LBEQ SDERR
+
     ; === send CMD55  ===
     LDX #CMD55
     JSR SDTXCMD
 
     ; read response
-    LDX #CMD55TXT
-    JSR PRINTSTRING
-
-    JSR SPI_RXA
-    JSR PRINTAHEX
+    LDX #SDRESP
+    JSR SDRX1
     JSR NSS1
-
-    LDX #EOLSTR
-    JSR PRINTSTRING
-
+    ; ignore response for now.. 
+    ;LDA 0,X
+    ;CMPA #$01
+    ;BNE INIT_AGAIN
 
     ; === send ACMD41  ===
     LDX #CMD41
     JSR SDTXCMD
 
     ; read response
-    LDX #ACMD41TXT
-    JSR PRINTSTRING
-
-    JSR SPI_RXA
-    PSHS A
-    JSR PRINTAHEX
+    LDX #SDRESP
+    JSR SDRX1
     JSR NSS1
 
-    LDX #EOLSTR
-    JSR PRINTSTRING
-    PULS A
+    ; init bit should be zero to indicate
+    ; card came out of init.
+
+    LDA 0,X
     ANDA #1
     BNE INIT_AGAIN
 
     ; === send CMD58  ===
-    LDB #1
+    ; to read OCR register
+    ;
+    ; bit 30 is Card capacitry status
+    ; bit 31 is Card power up status
+    ;
+    LDB #10
 CMD58AGAIN:
-    PSHS B
+    DECB
+    LBEQ SDERR
+
     LDX #CMD58
     JSR SDTXCMD
 
     ; read response
-    LDX #CMD58TXT
-    JSR PRINTSTRING
-
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX
-    JSR SPI_RXA
-    JSR PRINTAHEX    
+    LDX #SDRESP
+    JSR SDRX5
     JSR NSS1
-
-    LDX #EOLSTR
-    JSR PRINTSTRING
-
-    PULS B
-    DECB
+    LDA 0,X
+    CMPA #$00
+    LBNE SDERR
+    LDA 1,X           ; check the capacity
+    ANDA #$C0
+    CMPA #$C0
     BNE CMD58AGAIN
 
+    ; tell user the SD card was initialized
+    LDX #SDOK1
+    JSR PRINTSTRING
 
+    ; set fast speed
+    LDA #1
+    STA SPI_SPEED
+  
+    RTS
 
+; ==================================================
+;   SD CARD - READ SINGLE BLOCK
+;   A - MSB of 16-bit block index
+;   B - LSB of 16-bit block index
+;   X - Destination pointer
+;
+;   return: Z=1 if no error.
+;
+;   Assumption: SD card is a high-capacity card
+;               which always uses 512-byte
+;               fixed-size blocks
+; ==================================================
+
+SDREAD:
+    PSHS A
+    LDA #$FF        ; send 8 idle clocks
+    JSR SPI_TXA
+
+    JSR NSS0        ; select card
+    
+    LDA #$FF        ; send 8 idle clocks
+    JSR SPI_TXA
+
+    LDA #$51        ; CMD17
+    JSR SPI_TXA
+    CLRA            ; address 31-24 -> 0
+    JSR SPI_TXA
+    CLRA            ; address 23-16 -> 0
+    JSR SPI_TXA
+    PULS A          ; address 15-8 -> MSB block index
+    JSR SPI_TXA
+    TFR B,A         ; address 7-0 -> LSB block index
+    JSR SPI_TXA
+    LDA #$01        ; dummy CRC + stop bit
+    JSR SPI_TXA
+
+    ; turn around
+    LDA #$FF        ; send 8 idle clocks
+    JSR SPI_TXA
+
+    ; read response
+    PSHS X
+    LDX #SDRESP
+    JSR SDRX1
+    LDA 0,X         ; get response code
+    BEQ SDREAD_ROK  ; expected = 0
+    PULS X
+    JMP SDREAD_ERR
+
+SDREAD_ROK:
+    PULS X
+    ; wait for data response token (0xFE)
+SDREAD_AGAIN:
+    JSR SPI_RXA
+    CMPA #$FF
+    BEQ SDREAD_AGAIN
+
+    ; check for 0xFE
+    CMPA #$FE
+    BNE SDREAD_ERR  ; didnt find response token -> error
+
+    ; read the 512-byte data block (512 bytes)
+    ; but store only the first 256 bytes
+    ;
+    ; alternatively, send CMD12 to terminate xfer
+    ; which is faster
+    ;
+    CLRB
+SDREAD_BLK1:    
+    JSR SPI_RXA
+    STA ,X+
+    DECB 
+    BNE SDREAD_BLK1
+
+    CLRB
+SDREAD_BLK2:
+    JSR SPI_RXA
+    DECB 
+    BNE SDREAD_BLK2
+
+    ; read the 16-bit CRC
+    ; and ignore it :)
+    JSR SPI_RXA
+    JSR SPI_RXA
+
+    ; de-select SD card
+    JSR NSS1
+
+SDREAD_OK:
+    ORCC #$04       ; set zero flag
+    RTS
+
+SDREAD_ERR:
+    JSR PRINTAHEX
+    ANDCC #$FB      ; clear zero flag
     RTS
 
 ; ==================================================
@@ -428,42 +576,49 @@ CMD58AGAIN:
 START:
     LDX #BANNER
     JSR PRINTSTRING
+    JSR SDINIT
+
+    ; try to read sector 0 and display
+    CLRA
     CLRB
+    LDX #$2000
+    JSR SDREAD
+    BNE ERROR
 
-CMDAGAIN:
-    ; ask for user input
-    LDX #ASK
-    JSR PRINTSTRING
-
-    JSR INCHAR
-    
-    CMPA #'S'
-    BEQ INITSDCARD
-
+    ; display sector data
+    LDX #$2000
+    CLRB
+DISPSEC:
+    LDA ,X+
+    JSR PRINTAHEX
+    DECB
+    BNE DISPSEC
     LDX #EOLSTR
     JSR PRINTSTRING
-    JMP CMDAGAIN
+    JMP LOOP
 
-INITSDCARD:
-    JSR SDINIT
-    JMP CMDAGAIN
+ERROR:
+    LDX #ERRORTXT
+    JSR PRINTSTRING
+    JMP START
 
-BANNER .ascii "HD6309 SD card test"
+LOOP:
+    JMP LOOP
+
+
+BANNER .ascii "=== HD6309 SD card test ==="
+       .db 10,13,10,13,0
+
+ASK    .ascii "Press any key to try again"
        .db 10,13,0
 
-ASK    .ascii "Press S to send init sequence"
+SDERR  .ascii "Error: failed to init SD card"
        .db 10,13,0
 
+SDOK1  .ascii "SD card ok"
+       .db 10,13,0
 
-CMD0TXT  .ascii "CMD0  : "
-         .db 0
-CMD8TXT  .ascii "CMD8  : "
-         .db 0
-CMD55TXT .ascii "CMD55 : "
-         .db 0
-CMD58TXT .ascii "CMD58 : "
-         .db 0
-ACMD41TXT .ascii "ACMD41: "
-          .db 0
+ERRORTXT  .ascii "Error: reading sector 0"
+          .db 10,13,0
 
 EOLSTR .db 10,13,0
