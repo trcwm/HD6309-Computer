@@ -416,9 +416,6 @@ INIT_AGAIN:
     JSR SDRX1
     JSR NSS1
     ; ignore response for now.. 
-    ;LDA 0,X
-    ;CMPA #$01
-    ;BNE INIT_AGAIN
 
     ; === send ACMD41  ===
     LDX #CMD41
@@ -546,7 +543,7 @@ SDREAD_BLK1:
     DECB 
     BNE SDREAD_BLK1
 
-    CLRB
+    CLRB  ; superfluous, but ok.
 SDREAD_BLK2:
     JSR SPI_RXA
     DECB 
@@ -565,6 +562,113 @@ SDREAD_OK:
     RTS
 
 SDREAD_ERR:
+    JSR NSS1
+    JSR PRINTAHEX
+    ANDCC #$FB      ; clear zero flag
+    RTS
+
+; ==================================================
+;   SD CARD - WRITE SINGLE BLOCK
+;   A - MSB of 16-bit block index
+;   B - LSB of 16-bit block index
+;   X - Source pointer
+;
+;   return: Z=1 if no error.
+;
+;   Assumption: SD card is a high-capacity card
+;               which always uses 512-byte
+;               fixed-size blocks
+; ==================================================
+
+SDWRITE:
+    PSHS A
+    LDA #$FF        ; send 8 idle clocks
+    JSR SPI_TXA
+
+    JSR NSS0        ; select card
+    
+    LDA #$FF        ; send 8 idle clocks
+    JSR SPI_TXA
+
+    LDA #$58        ; CMD24
+    JSR SPI_TXA
+    CLRA            ; address 31-24 -> 0
+    JSR SPI_TXA
+    CLRA            ; address 23-16 -> 0
+    JSR SPI_TXA
+    PULS A          ; address 15-8 -> MSB block index
+    JSR SPI_TXA
+    TFR B,A         ; address 7-0 -> LSB block index
+    JSR SPI_TXA
+    LDA #$01        ; dummy CRC + stop bit
+    JSR SPI_TXA
+
+    ; turn around
+    LDA #$FF        ; send 8 idle clocks
+    JSR SPI_TXA
+
+    ; read response
+    PSHS X
+    LDX #SDRESP
+    JSR SDRX1
+    LDA 0,X         ; get response code
+    BEQ SDWRITE_ROK  ; expected = 0
+    PULS X
+    JMP SDWRITE_ERR
+
+SDWRITE_ROK:
+    PULS X
+    ; send mandatory dummy byte
+    LDA #$FF
+    JSR SPI_TXA
+
+    ; send start-of-packet byte 0xFE
+    LDA #$FE
+    JSR SPI_TXA
+
+    ; send the 512-byte data block    
+    CLRB
+SDWRITE_BLK1:
+    LDA ,X+
+    JSR SPI_TXA
+    DECB
+    BNE SDWRITE_BLK1
+
+    CLRB
+SDWRITE_BLK2:
+    CLRA            ; fill last part of sector with 0
+    JSR SPI_TXA
+    DECB
+    BNE SDWRITE_BLK2
+
+    ; send dummy CRC
+    CLRA
+    JSR SPI_TXA    
+    LDA #$01
+    JSR SPI_TXA
+
+    ; wait for the data accept token
+    CLRB
+SDWRITE_TOK:
+    DECB
+    BEQ SDWRITE_ERR ;  time-out
+    JSR SPI_RXA
+    CMPA #$FF
+    BEQ SDWRITE_TOK
+
+    ; check token
+    ANDA #$1F
+    CMPA #$05       ; $05 = data accepted
+    BNE SDWRITE_ERR
+    
+
+SDWRITE_OK:
+    JSR NSS1
+    ORCC #$04       ; set zero flag
+    RTS
+
+SDWRITE_ERR:
+    JSR NSS1
     JSR PRINTAHEX
     ANDCC #$FB      ; clear zero flag
     RTS
@@ -578,6 +682,7 @@ START:
     JSR PRINTSTRING
     JSR SDINIT
 
+AGAIN:
     ; try to read sector 0 and display
     CLRA
     CLRB
@@ -595,12 +700,32 @@ DISPSEC:
     BNE DISPSEC
     LDX #EOLSTR
     JSR PRINTSTRING
-    JMP LOOP
+
+    ; write to sector 0
+    JSR INCHAR
+    JSR OUTCHAR
+    LDX #$2000
+    CLRB
+FILLSEC:
+    STA ,X+
+    DECB
+    BNE FILLSEC
+    
+    CLRA
+    CLRB
+    LDX #$2000
+    JSR SDWRITE
+    BNE ERROR
+    JMP AGAIN
+
+
 
 ERROR:
     LDX #ERRORTXT
     JSR PRINTSTRING
     JMP START
+
+
 
 LOOP:
     JMP LOOP
@@ -618,7 +743,7 @@ SDERR  .ascii "Error: failed to init SD card"
 SDOK1  .ascii "SD card ok"
        .db 10,13,0
 
-ERRORTXT  .ascii "Error: reading sector 0"
+ERRORTXT  .ascii "I/O error - sector 0"
           .db 10,13,0
 
 EOLSTR .db 10,13,0
